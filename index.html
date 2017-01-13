@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -41,7 +41,7 @@
 		<button class="end">停止</button>
 	</div>
 	<script>
-		var arr = ['许庆庆','化晨鑫','李京京','黄锋','喻有海','高寒','张迎杰','吕书标','李双双','刘琼易','相泽华'];
+		var arr = ['张三','李四','王五','小红','小刚','小明'];
 		var showEle = document.getElementsByClassName('show-name')[0];
 		var startEle = document.getElementsByClassName('start')[0];
 		var endEle = document.getElementsByClassName('end')[0];
@@ -57,7 +57,7 @@
 			clearInterval(timer);
 		}
 		function randomFn(){
-			var random = Math.floor(Math.random()*11);
+			var random = Math.floor(Math.random()*6);
 			showEle.innerHTML = arr[random];
 
 		}
