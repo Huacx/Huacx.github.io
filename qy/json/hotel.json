@@ -1,47 +1,47 @@
 {
 	"hotel":[
 		{
-			"img":"../images/Hotel/shouer.png",
+			"img":"../images/hotel/shouer.png",
 			"p":"首尔",
 			"span":"0000"
 		},
 		{
-			"img":"../images/Hotel/bali.png",
+			"img":"../images/hotel/bali.png",
 			"p":"巴黎",
 			"span":"1111"
 		},
 		{
-			"img":"../images/Hotel/lundon.png",
+			"img":"../images/hotel/lundon.png",
 			"p":"伦敦",
 			"span":"2222"
 		},
 		{
-			"img":"../images/Hotel/dongjing.png",
+			"img":"../images/hotel/dongjing.png",
 			"p":"东京",
 			"span":"3333"
 		},
 		{
-			"img":"../images/Hotel/foluo.png",
+			"img":"../images/hotel/foluo.png",
 			"p":"佛罗伦萨",
 			"span":"4444"
 		},
 		{
-			"img":"../images/Hotel/hongkou.png",
+			"img":"../images/hotel/hongkou.png",
 			"p":"香港",
 			"span":"5555"
 		},
 		{
-			"img":"../images/Hotel/jingdu.png",
+			"img":"../images/hotel/jingdu.png",
 			"p":"京都",
 			"span":"6666"
 		},
 		{
-			"img":"../images/Hotel/luoma.png",
+			"img":"../images/hotel/luoma.png",
 			"p":"罗马",
 			"span":"7777"
 		},
 		{
-			"img":"../images/Hotel/puji.png",
+			"img":"../images/hotel/puji.png",
 			"p":"普吉岛",
 			"span":"8888"
 		}
