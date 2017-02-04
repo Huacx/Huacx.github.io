@@ -3,65 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>随机</title>
+	<title>index</title>
 	<link rel="stylesheet" href="">
 	<style type="text/css" media="screen">
-		.box{
-			width: 800px;
-			height: 300px;
+		ol{
+			width: 300px;
 			margin: 100px auto;
-			text-align: center;
 		}
-		.show-name{
-			width: 800px;
-			height: 300px;
-			/*border: 1px solid black;*/
-			line-height: 300px;
-			text-align: center;
-			font-size: 200px;
-			color: green;
+		ol>li{
+			color: blue;
+			font-size: 24px;
 		}
-		button{
-			width: 200px;
-			height: 50px;
-			font-size: 40px;
-			text-align: center;
-			list-style: 30px;
-			margin: 30px auto;
-			margin-right: 20px;
-			border-radius: 5px;
-			background-color: #66F628;
+		ol>li>a{
+			text-decoration: none;
 		}
 	</style>
 </head>
 <body>
-	<div class="box">
-		<div class="show-name">start</div>
-		<button class="start">开始</button>
-		<button class="end">停止</button>
-	</div>
-	<script>
-		var arr = ['张三','李四','王五','小红','小刚','小明'];
-		var showEle = document.getElementsByClassName('show-name')[0];
-		var startEle = document.getElementsByClassName('start')[0];
-		var endEle = document.getElementsByClassName('end')[0];
-		var timer = '';
-		console.log(arr.length);
-		startEle.onclick = function(){
-			if(timer){
-				clearInterval(timer);
-			}
-			timer = setInterval(randomFn,80);
-		}
-		endEle.onclick = function(){
-			clearInterval(timer);
-		}
-		function randomFn(){
-			var random = Math.floor(Math.random()*6);
-			showEle.innerHTML = arr[random];
-
-		}
-
-	</script>
+	<ol>
+		<li><a href="randomName.html">随机点名</a></li>
+		<li><a href="olderdoctor/index.html">老中医</a></li>
+		<li><a href="qy/index.html">穷游网</a></li>
+	</ol>
 </body>
 </html>
