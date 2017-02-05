@@ -1,0 +1,35 @@
+<div class="vip-p-record ng-scope">
+    <ul class="record-nav clearfix">
+        <li ng-repeat="tn in ['全部','未支付','已支付']" ng-click="changeType($index)" ng-class='{active:$index==type}' class="ng-binding ng-scope">{{tn}}</li>
+    </ul>
+    <div class="record-content">
+        <ul class="content-header clearfix">
+            <li class="li1 pl50">项目信息</li>
+            <li class="li2">实付款(元)</li>
+            <li class="li3">交易状态</li>
+            <li class="li4">操作</li>
+        </ul>
+        <div class="content-box">
+            <!-- ngRepeat: item in recordData -->
+            <ul ng-repeat="item in recordListData" class="content-item clearfix ng-scope">
+                <li class="li1 clearfix">
+                    <img ng-src="{{item.img}}">
+                    <div class="item-info">
+                        <h1 class="ng-binding">{{item.name}}</h1>
+                        <h3 class="ng-binding">by {{item.fname}}</h3>
+                        <p class="ng-binding">订单号：{{item.oid}}</p>
+                    </div>
+                </li>
+                <li class="li2 ng-binding">{{item.rprice|currency:'￥':2}}</li>
+                <li class="li3 ng-binding">{{[item.status!=1?"未支付":"已支付",'未支付','已支付'][type]}}</li>
+                <li class="li4" ng-class="{pay: item.status==0}">
+                    <div class="pay-btn">立即支付</div>
+                    <a href="#">交易详情</a>
+                    <a href="#">删除</a>
+                </li>
+            </ul>
+            <!-- end ngRepeat: item in recordData -->
+            <ul uib-pagination total-items="countAll" items-per-page='count' ng-model="page" boundary-links="true" max-size="maxSize" force-ellipses="true" previous-text="上一页" next-text="下一页" first-text="首页" last-text="尾页" ng-change="pageChanged()" id="pageChange"></ul>
+        </div>
+    </div>
+</div>

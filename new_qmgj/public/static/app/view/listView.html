@@ -1,0 +1,61 @@
+<!-- uiView: -->
+<div class="qmgj-p-list ng-scope">
+    <!-- 筛选区 -->
+    <div class="filter-box">
+        <div class="filter-group">
+            <div class="filter-item">
+                <!-- ngRepeat: obj in arr -->
+                <span ng-repeat="item in typeList" ng-class="{active:cid == $index}" ng-click="changeType($index)" class="ng-binding ng-scope">{{item}}</span>
+                <!-- end ngRepeat: obj in arr -->
+            </div>
+            <div class="filter-item">
+                <!-- ngRepeat: o in ['筹资中','已结束','成功'] --><span ng-repeat="o in ['筹资中','已结束','成功']" ng-class="{active: status == $index}" ng-click="changeStatus($index)" class="ng-binding ng-scope">{{o}}</span>
+                <!-- end ngRepeat: o in ['筹资中','已结束','成功'] -->
+            </div>
+            <div class="filter-item">
+                <!-- ngRepeat: k in ['最新','热门','结束时间'] --><span ng-repeat="k in ['最新','热门','结束时间']" ng-class="{active: timeStatus == $index}" ng-click="checkTimeStatus($index)" class="ng-binding ng-scope">{{k}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- 展示区 -->
+    <div class="show-box">
+        <!-- 展示内容 -->
+        <ul class="tvList clearfix">
+            <!-- ngRepeat: item in listData -->
+            <li ng-repeat="item in dataList" class="ng-scope">
+                <div class="info-item">
+                    <img ng-src="{{item.img}}">
+                    <div class="info-content">
+                        <h1 class="ng-binding">{{item.name}}</h1>
+                        <h3 class="hot-h3 ng-binding">by {{item.fname}}</h3>
+                        <p class="hot-p ng-binding">{{item.desc|substr:40}}...</p>
+                        <div><span class="qmgj-g-sprite sprite-mark ng-binding">{{cid!=0?typeList[cid]:typeList[item.cid]}}</span><span class="qmgj-g-sprite sprite-tv">卫视推荐</span></div>
+                        <!-- 进度条 -->
+                        <div class="process-box">
+                            <div class="process" style="width: {{item.sp}}%"></div>
+                        </div>
+                        <!-- 信息 -->
+                        <ul class="info-box clearfix">
+                            <li>
+                                <h1 class="ng-binding">{{item.sp}}%</h1>
+                                <p>进度</p>
+                            </li>
+                            <li>
+                                <h1 class="ng-binding">{{item.rprice|currency:'￥':2}}</h1>
+                                <p>支持金额</p>
+                            </li>
+                            <li>
+                                <h1 class="ng-binding">{{item.rday}}</h1>
+                                <p>剩余天数</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <!-- end ngRepeat: item in listData -->
+        </ul>
+        <!-- 翻页区 -->
+            <ul uib-pagination total-items="countAll" items-per-page='count' ng-model="page" boundary-links="true" max-size="maxSize" force-ellipses="true" previous-text="上一页" next-text="下一页" first-text="首页" last-text="尾页" ng-change="pageChanged()" id="pageChange">
+        </section>
+    </div>
+</div>
