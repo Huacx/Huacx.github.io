@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app='myapp'>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>猎豹wifi</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body ng-controller='ct'>
+	<div class="care">
+		<div class="two-code">
+			<img src="images/two-code.png" alt="">
+			<p>关注猎豹微信</p>
+		</div>
+	</div>
+    <header class="clear">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt=""></a>
+        </div>
+        <nav>
+            <ul class="clear">
+                <li><a href="#" title="">首页</a></li>
+                <li><a href="#" title="">下载</a></li>
+                <li><a href="#" title="">论坛</a></li>
+                <li><a href="#" title="">international</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="slide-box">
+            <span class="pre" ng-click='preFn()'>&lt;</span>
+            <div ng-repeat='item in slideData' class="slide{{$index+1}}" ng-show='$index==showIndex'>
+                <img ng-src="{{item.imgUrl1}}" class="slide{{$index+1}}-left">
+                <div class="slide{{$index+1}}-right">
+	                <img ng-src="{{item.imgUrl2}}">
+                	<p>{{item.info}}</p>
+                </div>
+            </div>
+            <span class="next" ng-click='nextFn()'>&gt;</span>
+            <ul class="clear">
+            	<li ng-repeat='item in slideData' ng-class = '{active:$index==showIndex}' ng-mouseenter='enterFn($index)' ng-mouseleave='leaveFn()'></li>
+            </ul>
+        </div>
+        <div class="productChoice">
+        	<ul class="productChoice-content clear">
+        		<li ng-repeat='item in proData' class="pro{{$index+1}}">
+        			<a href="#">
+        				<div class="pro-img"></div>
+        				<h3>{{item.type}}</h3>
+        				<p>{{item.desc}}</p>
+	        			<div class="bg-circle"></div>
+        			</a>
+        		</li>
+        	</ul>
+        </div>
+        <div class="new-hot">
+        	<h2>热点新闻</h2>
+        	<ul>
+        		<li class="clear" ng-repeat='item in showData'>
+        			<div class="content-left">
+        				<a href="#"><img ng-src="{{item.img}}" alt=""></a>
+        			</div>
+        			<div class="content-right">
+        				<h3><a href="#">{{item.title}}</a></h3>
+        				<div>
+	        				<span class="time">{{item.time}}</span>
+	        				<span class="share">分享:</span>
+	        				<a href="#" class="sina"></a>
+	        				<a href="#" class="weibo"></a>
+	        				<a href="#" class="qzone"></a>
+        				</div>
+        				<p><a href="#">{{item.desc}}</a></p>
+        				<a href="#">查看详情&gt;</a>
+        			</div>
+        		</li>
+        		
+        	</ul>
+        </div>
+        <div class="forum">
+	        <h2>论坛精华</h2>
+        	<ul class="clear">
+        		<li ng-repeat='item in hotData'><a href="#">{{item}}</a></li>
+        	</ul>
+        </div>
+    </div>
+    <footer>
+    	<div class="icon">
+    		<a href="#" class="sina-icon"></a>
+    		<a href="#" class="weibo-icon"></a>
+    		<a href="#" class="zone-icon"></a>
+    	</div>
+    	<ul class="clear">
+    		<li><a href="#">猎豹论坛</a>|</li>
+    		<li><a href="#">隐私策略</a>|</li>
+    		<li><a href="#">关于我们</a>|</li>
+    		<li><a href="#">工作机会</a>|</li>
+    		<li><a href="#">反馈邮箱</a>|</li>
+    		<li><a href="#">联系我们</a></li>
+    	</ul>
+    	<p class="">京ICP备 12038800号-2  京ICP证 120823号  京公网安备 11010502023651  京网文（2016） 0672-054号</p>
+    	<p>© 2011-2016 猎豹移动版权所有</p>
+    </footer>
+    <script src='bower_components/jquery/dist/jquery.js'></script>
+    <script src='bower_components/angular/angular.js'></script>
+    <script src='js/index.js'></script>
+</body>
+
+</html>
