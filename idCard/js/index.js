@@ -15,7 +15,7 @@ $(function(){
 	getArea();
 	function getAreaData(){
 		$.ajax({
-			url:'../json/cityCode.json',
+			url:'json/cityCode.json',
 			method:"get",
 			success:function(res){
 				console.log(res);
@@ -28,7 +28,7 @@ $(function(){
 	}
 	function getArea(){
 		$.ajax({
-			url:'../json/city.json',
+			url:'json/city.json',
 			method:"get",
 			success:function(res){
 				console.log(res);
