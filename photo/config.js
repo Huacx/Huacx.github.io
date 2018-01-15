@@ -3,15 +3,15 @@ app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRo
 	$urlRouterProvider.otherwise('/home');
 	$stateProvider.state('home',{
 		url:'/home',
-		templateUrl:'../view/homeView.html',
+		templateUrl:'view/homeView.html',
 		controller:'homeViewController'
 	}).state('content',{
 		url:'/home',
-		templateUrl:'../view/contentView.html',
+		templateUrl:'view/contentView.html',
 		controller:'contentViewController'
 	}).state('content2',{
 		url:'/home',
-		templateUrl:'../view/content2View.html',
+		templateUrl:'view/content2View.html',
 		controller:'content2ViewController'
 	})
 }])
