@@ -15,31 +15,36 @@ var subBtnEle = $(".subBtn button");
 getCityName();
 
 subBtnEle.click(function(){
+
+	if($("#province").val()=="" || $("#city").val()=="" || $("#_area").val()==""){
+		alert("市或区不能为空，请选择！！！");
+		return;
+	}
 	var place = null;
+	//获取地址
 	if($("#city").val()=="市辖区"||$("#city").val()=="县"){
 		place = $("#province").val()+$("#_area").val();
 	}else{
 		place = $("#province").val()+$("#city").val()+$("#_area").val();
 	}
 
-	var areaCode = getCityCode(place);
-
+	var areaCode = getCityCode(place);//获取区域码
+	//获取性别码
 	var genderFlag = $('input:radio[name="gender"]:checked').val();
-
 	var gender = getGender(genderFlag);
-
+	//获取年月日
 	var year = $("#year").val();
 	var month = $("#month").val();
 	var day = $("#day").val();
-
+	//获取随机两位数
 	var sort = Math.floor( Math.random()*90)+10;
 	
-
+	//拼接前17位
 	var result = areaCode+year+format(month)+format(day)+sort+gender;
-
+	//生成身份证
 	result = check(result);
+
 	$("#result").val(result);
-	$("#length").val(result.length);
 });
 //获取校验码
 function check(result){
@@ -56,7 +61,7 @@ function check(result){
 //获取性别码
 function getGender(f){
 	if(f==1){//奇数 男
-		var random = Math.floor( Math.random()*10)+1;
+		var random = Math.floor( Math.random()*10);0-9
 		if(random%2==0){
 			random = random + 1;
 		}
@@ -117,7 +122,7 @@ function getCityName(){
 function getProvincelist(){
 	var html = "";
 	for (var i = 0; i < province.length; i++) {
-		html += "<option value='"+ province[i].name +"'>"+province[i].name+"</option>"
+		html += "<option value='"+ province[i].name +"'>"+province[i].name+"</option>";
 	}
 	$("#province").append(html);
 	$("#province").on("change",function(){
@@ -132,9 +137,10 @@ function getProvincelist(){
 					if(cityDate[j].name == $("#city").val()){
 						areaDate = cityDate[j].area;
 						getAreaList(areaDate);
+						break;
 					}
 				}
-
+				break;	
 			}
 		}
 	});
@@ -143,7 +149,7 @@ function getProvincelist(){
 function getCityList(cityDate){
 	var html = "";
 	for(var i = 0; i< cityDate.length; i++){
-		html += "<option value='"+ cityDate[i].name +"'>"+cityDate[i].name+"</option>"
+		html += "<option value='"+ cityDate[i].name +"'>"+cityDate[i].name+"</option>";
 	}
 	$("#city").html(html);
 	$("#city").on("change",function(){
@@ -152,6 +158,7 @@ function getCityList(cityDate){
 			if(cityDate[j].name == $("#city").val()){
 				areaDate = cityDate[j].area;
 				getAreaList(areaDate);
+				break;
 			}
 		}
 	});
