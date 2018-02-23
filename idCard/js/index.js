@@ -13,6 +13,8 @@ $(function(){
 	var queryBtnEle = $("#query");
 	var inputValEle = $("#inputVal");
 
+	getCityCode();
+
 	queryBtnEle.click(function(){
 		checkIdCard(inputValEle.val());
 	});
@@ -71,7 +73,7 @@ $(function(){
 				var year = inputIdCard.substring(6,10);
 				var month = inputIdCard.substring(10,12);
 				var day = inputIdCard.substring(12,14);
-				var genderCode = inputIdCard.substring(17,18);
+				var genderCode = inputIdCard.substring(16,17);
 
 				if(!checkArea(areaCode)){
 					alert("区域码错误！！");
@@ -80,6 +82,7 @@ $(function(){
 					if(!checkData(year,month,day)){
 						return;
 					}else{
+						console.log(genderCode);
 						$("#gender").val(checkGender(genderCode));
 						$("#age").val(getCurDate()-year);
 						$("#birthday").val(year + "年" + month + "月" + day +"日");
@@ -89,6 +92,23 @@ $(function(){
 			}
 		}
 	}
+
+	//获取城市编码
+	function getCityCode(){
+		var retCode;
+		$.ajax({
+			url:'json/cityCode.json',
+			method:"get",
+			async:false,
+			success:function(res){
+				cityCode =res;
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+	}
+
 	//判断区域
 	function checkArea(area){
 		getCityCode();
@@ -164,6 +184,4 @@ $(function(){
 			return 0;
 		}
 	}
-
-
 })

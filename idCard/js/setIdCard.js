@@ -15,23 +15,31 @@ var subBtnEle = $(".subBtn button");
 getCityName();
 
 subBtnEle.click(function(){
-	var place = $("#province").val()+$("#city").val()+$("#_area").val();
+	var place = null;
+	if($("#city").val()=="市辖区"||$("#city").val()=="县"){
+		place = $("#province").val()+$("#_area").val();
+	}else{
+		place = $("#province").val()+$("#city").val()+$("#_area").val();
+	}
+
+	var areaCode = getCityCode(place);
+
 	var genderFlag = $('input:radio[name="gender"]:checked').val();
 
 	var gender = getGender(genderFlag);
 
-	var areaCode = getCityCode(place);
 	var year = $("#year").val();
 	var month = $("#month").val();
 	var day = $("#day").val();
 
 	var sort = Math.floor( Math.random()*90)+10;
-	console.log(sort);
+	
 
 	var result = areaCode+year+format(month)+format(day)+sort+gender;
 
 	result = check(result);
 	$("#result").val(result);
+	$("#length").val(result.length);
 });
 //获取校验码
 function check(result){
@@ -78,22 +86,7 @@ function getCityCode(place){
 	});
 	return retCode;
 }
-//获取城市名称
-function getCityName(){
-	$.ajax({
-		url:'json/city.json',
-		method:"get",
-		async:false,
-		success:function(res){
-			console.log(res);
-			province = res.citylist;
-			getProvincelist();
-		},
-		error:function(error){
-			console.log(error);
-		}
-	});
-}
+
 
 function getAreaCode(res,place){
 	for(var i = 0;i < res.length; i++){
@@ -103,6 +96,23 @@ function getAreaCode(res,place){
 	}
 	return areaCode;
 }
+
+//获取城市名称
+function getCityName(){
+	$.ajax({
+		url:'json/city.json',
+		method:"get",
+		async:false,
+		success:function(res){
+			province = res.citylist;
+			getProvincelist();
+		},
+		error:function(error){
+			console.log(error);
+		}
+	});
+}
+
 //获取省份列表
 function getProvincelist(){
 	var html = "";
@@ -112,18 +122,25 @@ function getProvincelist(){
 	$("#province").append(html);
 	$("#province").on("change",function(){
 		var cityDate = null;
-		console.log($("#province").val());
 		for (var j = 0; j < province.length; j++) {
 			if(province[j].name == $("#province").val()){
 				cityDate = province[j].city;
 				getCityList(cityDate);
+
+				var areaDate = null;
+				for (var j = 0; j < cityDate.length; j++) {
+					if(cityDate[j].name == $("#city").val()){
+						areaDate = cityDate[j].area;
+						getAreaList(areaDate);
+					}
+				}
+
 			}
 		}
 	});
 }
 //获取城市列表
 function getCityList(cityDate){
-	console.log(cityDate);
 	var html = "";
 	for(var i = 0; i< cityDate.length; i++){
 		html += "<option value='"+ cityDate[i].name +"'>"+cityDate[i].name+"</option>"
@@ -131,7 +148,6 @@ function getCityList(cityDate){
 	$("#city").html(html);
 	$("#city").on("change",function(){
 		var areaDate = null;
-		console.log($("#city").val());
 		for (var j = 0; j < cityDate.length; j++) {
 			if(cityDate[j].name == $("#city").val()){
 				areaDate = cityDate[j].area;
@@ -173,7 +189,6 @@ function getYear(){
 function getMonth(){
 	var year = (new Date()).getFullYear();
 	var month = (new Date()).getMonth()+1;
-	console.log(year + "--" + month);
 	getDay();
 	var html = "";
 	var v = 12;
@@ -185,7 +200,6 @@ function getMonth(){
 	}
 	$("#month").html(html);
 	$("#month").on("change",function(){
-		console.log("month");
 		monthValue = $("#month").val();
 		getDay();
 	});
