@@ -1,8 +1,6 @@
 var code = [7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2];
 var endCode = [1,0,'X',9,8,7,6,5,4,3,2];
 
-// var monthArr = ["01","02","03","04","05","06","07","08","09","10","11","12"];
-
 var province = null;
 var city = null;
 var area = null;
@@ -17,7 +15,7 @@ getCityName();
 subBtnEle.click(function(){
 
 	if($("#province").val()=="" || $("#city").val()=="" || $("#_area").val()==""){
-		alert("市或区不能为空，请选择！！！");
+		alert("省市区不能为空，请选择！！！");
 		return;
 	}
 	var place = null;
@@ -58,6 +56,7 @@ function check(result){
 	resultCode = endCode[mode];
 	return result+resultCode;
 }
+
 //获取性别码
 function getGender(f){
 	if(f==1){//奇数 男
@@ -68,7 +67,7 @@ function getGender(f){
 		return random;
 	}else{
 		//return "女";
-		var random = Math.floor( Math.random()*10)+1;
+		var random = Math.floor( Math.random()*10);
 		if(random%2!=0){
 			random = random - 1;
 		}
